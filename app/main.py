@@ -1,8 +1,9 @@
 from fastapi import FastAPI
 
-app = FastAPI()
+from app.routes.health import router as health_router
 
+app = FastAPI(
+    title="Distributed Event Processing System",
+)
 
-@app.get("/health/live")
-def health_live():
-    return {"status": "ok"}
+app.include_router(health_router)
